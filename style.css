@@ -1,0 +1,1294 @@
+/*---------font---------*/
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/*---------전체 기본 레이아웃---------*/
+body{
+    font-family:'NanumSquareRound';
+    margin:0px;
+    background-color: #050a4f;
+    color: black;
+}
+a{
+    text-decoration:none;
+}
+.nextLine{
+    height:100px;
+}
+.cont_fix{
+    color:white;
+    background-color: rgb(151, 51, 51);
+    border-radius: 6px;
+    margin:5px;
+    font-weight: lighter;
+    font-size:20px;
+}
+.comm_fix{
+    color:white;
+    background-color: rgb(151, 51, 51);
+    border-radius: 6px;
+    padding:2px;
+    margin:5px;
+    font-weight: lighter;
+    font-size:15px;
+}
+.hide {
+    display: none;
+}
+
+
+/*---------header---------*/
+#headerBlank{
+    height:60px;
+}
+#loginBox, #memberBox{
+    height: 30px;
+    text-align: right;
+    padding-top: 30px;
+    margin-right:35px;
+    text-decoration: underline;
+    
+}
+#loginBox a, #memberBox a{
+    color:white;
+}
+#icon_container{
+    text-align:right;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-right:30px;
+}
+#icon_container img{
+    display:inline;
+    width:30px;
+    margin:5px;
+}
+#logo_container{
+    text-align: center;
+    padding-top:20px;
+    padding-bottom:40px;
+}
+#bar{
+    background-color: none;
+    opacity: 60%;
+    padding-top:4px;
+}
+
+
+/*---------menu---------*/
+#menu{
+    display:grid;
+    grid-template-columns: 1fr repeat(5,100px) 1fr;
+}
+#menu a{
+    color: rgb(193, 193, 193);
+}
+#menu .menu_elem{
+    position: relative;
+}
+/*menu_elem 하나에 마우스를 올리면: 그 menu_elem의 자식인 sub_menu를 조정*/
+#menu .menu_elem:hover .sub_menu{
+    max-height:500px;
+}
+/*서브메뉴가 나타나면, 서브메뉴로 마우스를 옮겨도 서브메뉴가 계속 있게 해야함*/
+#menu .sub_menu:hover{
+    display: block;
+}
+#menu .sub_menu{
+    z-index: 100;
+    position:absolute;
+    top:40px;
+    left:0;
+    width:100%;
+    list-style: none;
+    padding-left: 0px;
+    /*display:none을 쓰면 transition이 안먹혀*/
+    overflow:hidden;/*ul칸을 넘치는 li는 hidden시킴*/
+    max-height:0px;
+    transition-duration:2s;
+    transition-property:max-height;
+}
+#menu .sub_menu li{
+    background-color:rgb(250, 250, 250);
+    text-align:center;
+    height:30px;
+    line-height: 30px; /*글자를 위아래로도 중앙에 두려면, 이걸 해야함(li 박스 위치만큼 텍스트 줄의 위치를 옮긴거임)*/
+    margin:0px;
+}
+#menu .sub_menu li a{
+    color:rgb(84, 82, 82);
+}
+/*서브메뉴에서 li하나를 mouseover시에 색 변환*/
+#menu .sub_menu li:hover{
+    background-color: gray;
+}
+#menu .sub_menu li:hover a{
+    color:#050a4f;
+    font-weight:bold;
+}
+
+#menu h4{
+    font-weight: lighter;
+    text-align: center;
+    opacity: 80%;
+}
+
+
+/*---------content_box---------*/
+#content_box{
+    width:100%;
+    height:auto;
+    background-color: white;
+    display:grid;
+    grid-template-rows: auto;
+    text-align: center;
+    justify-items:center;
+}
+#content_box h1{
+    width: 500px;
+    text-align: center;
+    color:rgb(59, 58, 58);
+    padding-top:100px;
+    padding-bottom:10px;
+    border-bottom: rgb(59, 58, 58) solid 1px;
+    font-weight:900px;
+    font-family: 'Noto Sans KR';
+}
+#content_box h5{
+    text-align: center;
+    color:rgb(59, 58, 58);
+    padding:70px;
+    font-size:larger;
+}
+
+/*greetings.php*/
+.section {
+    margin:0;
+    padding:0;
+}
+.section input[id*="slide"] {
+    display:none;
+}
+.section .slidewrap {
+    max-width:1000px;
+    margin:0 auto;
+}
+.section .slidelist {
+    white-space:nowrap;
+    font-size:0;
+    overflow:hidden;
+    position:relative;
+    padding:0;
+}
+.section .slidelist > li {
+    display:inline-block;
+    vertical-align:middle;
+    width:100%;
+    transition:all .5s;
+}
+.section .slidelist > li > a {
+    display:block;
+    position:relative;
+}
+.section .slidelist > li > a img {
+    width:100%;
+}
+.section .slidelist label {
+    position:absolute;
+    z-index:10;
+    top:50%;
+    transform:translateY(-50%);
+    padding:50px;
+    cursor:pointer;
+}
+
+/* input에 체크되면 슬라이드 효과 */
+.section input[id="slide01"]:checked ~ .slidewrap .slidelist > li {
+    transform:translateX(0%);
+}
+.section input[id="slide02"]:checked ~ .slidewrap .slidelist > li {
+    transform:translateX(-100%);
+}
+.section input[id="slide03"]:checked ~ .slidewrap .slidelist > li {
+    transform:translateX(-200%);
+}
+
+/* 좌,우 슬라이드 버튼 */
+.slide-control > div {
+    display:none;
+}
+.section .left {
+    left:30px;
+    background:url('/image/icon/left.png') center center / 100% no-repeat;
+}
+.section .right {
+    right:30px;
+    background:url('/image/icon/right.png') center center / 100% no-repeat;
+}
+.section input[id="slide01"]:checked ~ .slidewrap .slide-control > div:nth-child(1) {
+    display:block;
+}
+.section input[id="slide02"]:checked ~ .slidewrap .slide-control > div:nth-child(2) {
+    display:block;
+}
+.section input[id="slide03"]:checked ~ .slidewrap .slide-control > div:nth-child(3) {
+    display:block;
+}
+
+/* 페이징 */
+.slide-pagelist {
+    text-align:center;
+    padding:20px;
+}
+.slide-pagelist > li {
+    display:inline-block;
+    vertical-align:middle;
+}
+.slide-pagelist > li > label {
+    display:block;
+    padding:8px 30px;
+    border-radius:30px;
+    background:#ccc;
+    margin:20px 10px;
+    cursor:pointer;
+}
+.section input[id="slide01"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {
+    background:#999;
+}
+.section input[id="slide02"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {
+    background:#999;
+}
+.section input[id="slide03"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {
+    background:#999;
+}
+
+/*---------introduction, greetings---------*/
+#introduction h3, #question h3{
+    width: 700px;
+    text-align: center;
+    color:rgb(59, 58, 58);
+    padding-top:100px;
+    padding-bottom:10px;
+    border-bottom: rgb(59, 58, 58) solid 1px;
+    font-family: 'Noto Sans KR';
+}
+#introduction{
+    width: 100%;
+    height:100%;
+    background-color: #ffebb6;
+}
+
+/*---------vision.php---------*/
+#vision{
+    display: inline-block;
+    background-color: #FFEBB6;
+    width: 100%;
+}
+#box_of_2{
+    width: 1000px;
+    height:800px;
+    margin:auto;
+}
+#box_of_2::after{
+    display:block;
+    clear:both;
+}
+#vision_img{
+    border-radius: 10px;
+    overflow: hidden;
+    float:left;
+    width:50%;
+}
+#vision_img img{
+    width:100%;
+
+}
+#vision_p{
+    float:right;
+    width:40%;
+    padding:10px;
+    padding-top:130px;
+    text-align: left;
+}
+#vision_p h3{
+    font-size:35px;
+    font-family: 'Noto Sans KR';
+    padding-bottom:10px;
+    border-bottom: solid 1px black;
+}
+#vision_p p{
+    font-size:20px;
+    font-family: 'NanumSquareRound';
+    padding-top:30px;
+}
+
+/*---------history.php---------*/
+#history{
+    width: 100%;
+    background-color: #FFEBB6;
+}
+#history img{
+    width:100%;
+}
+
+
+/*---------index.php---------*/
+#index{
+    width:100%;
+}
+#index h1{
+    font-size:60px;
+    width: 600px;
+    padding-top:150px;
+    margin:auto;
+}
+#index h5{
+    margin:0;
+    padding:0;
+    padding-top:70px;
+}
+#index h4{
+    font-weight: 100;
+}
+#mansonry{
+    column-width:350px;
+    column-gap: 15px;
+    text-align:center;
+    max-width: 1100px;
+    margin:50px auto;
+}
+.hover{
+    display: inline-block;
+    width:fit-content;
+    height: fit-content;
+    margin-bottom:30px;
+    border-radius:10px;
+    transition: ease 0.3s;
+    cursor: pointer;
+}
+.card{
+    width:fit-content;
+    height: fit-content;
+    border-radius:10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px 1px rgb(169, 169, 169);
+}
+.card figure{
+    padding:auto;
+    margin:0;
+    width:fit-content;
+    height: fit-content;
+}
+.card figure img{
+    width:320px;
+    height: auto;
+}
+.card figcaption{
+    max-width:300px;
+    margin:0;
+    padding:0;
+    color:black;
+    background-color: white;
+    padding:10px;
+    text-align:left;
+    font-size: medium;
+}
+.hover:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 15px 5px rgba(0,0,0,0.2);
+}
+ol{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    padding-inline-start: 0px;
+    list-style: none;
+}
+
+/*---------레이어 팝업(모달)---------*/
+.popup {
+	position: fixed; /*팝업 전체를 콘텐츠보다 위로 띄움*/
+    /*dimmed 영역이 콘텐츠가 길어질때 같이 길어지게 하기 위해 relative대신 fixed 사용. fixed는 뷰포트, 즉 현재 보이는 브라우저 화면 사이즈를 기준으로 하기 때문에 스크롤을 내려도 딤드 레이어가 노출됨*/
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+    visibility:hidden;
+}
+
+.popup_layer {
+	position: relative; /*z-index는 반드시 position:relative 속성 필요*/
+    left:50%;
+    top:50%;
+    transform:translateX(-50%) translateY(-40%);
+	width: 600px;
+	min-height: 300px; /*min-height로 되어있어서 텍스트가 길어짐에 따라 높이가 커짐*/
+	padding-bottom: 50px; /*텍스트를 온전히 보이게 하기 위해 버튼 부분을 padding으로 밀어줌*/
+	background: #fff;
+    border-radius: 6px;
+    opacity:0%;
+	z-index: 10; /*dimmed보다 z-index 높힘*/
+    transition: all .5s;
+}
+.show{ /*팝업창이 팝업될때  class = popup_layer에서 class=popup_layer show로 바꿈*/
+    opacity:100%;
+    transform: translate(-50%, -50%);
+    transition: all .5s;/*트랜지션 효과*/
+}
+.text_area {
+	padding: 50px 30px 30px;
+	text-align: center
+}
+
+.btn_area {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+    border-radius: 0px 0px 6px 6px;
+	overflow: hidden; /*float 해제*/
+}
+
+.btn {
+	float: left;
+	width: 100%;
+	height: 100%;
+	font-size: 15px;
+	font-weight: bold;
+	border: 0;
+	background:#050a4f;
+    color:white;
+    cursor:pointer;
+    /*button태그의 기본 속성 : box-sizing:border-box;
+    따라서 기본적으로 width값 안에 border영역까지 포함됨*/
+}
+
+.popup_dimmed {
+	position: absolute; /*띄워줌*/
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	opacity: 0.3;
+}
+
+
+
+/*---------question.php---------*/
+#question_grid{
+    display: grid;
+    grid-template-columns: 500px 200px;
+    grid-column-gap: 40px;
+    padding: 100px;
+}
+#map{
+    grid-column: 1/2;
+}
+#inquiry{
+    grid-column: 2/3;
+    background-color: none;
+    color: black;
+    text-align:left;
+}
+@media (max-width:1230px){
+    #question_grid{
+        display: block;
+    }
+}
+
+
+/*---------login.php---------*/
+#login h4{
+    font-size: 20px;
+}
+#login form p input[type=text],#login form p input[type=password]{
+    
+    width: 290px;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    outline-color: #050a4f;
+}
+#login form p input[type=submit]{
+    width: 300px;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    background-color: #050a4f;
+    color:white;
+    border-radius: 2%;
+    border:none;
+}
+#login form p input[type=submit]:hover {
+    cursor: pointer;
+}
+
+
+#signup_link p{
+    display:inline;
+}
+#signup_link p a{
+    color: rgb(87, 87, 6);
+    font-weight:bolder;
+}
+#signup_link p a:hover{
+    color: rgb(182, 75, 5);
+}
+
+
+/*---------signup.php---------*/
+@media (max-width:1000px){
+    #signup{
+        width:100vw;
+    }
+}
+#signup h4{
+    font-size: 30px;
+}
+#signup h3{
+    text-align: left;
+}
+#signup .scrollBox{
+    width: 960px;
+    height: 400px;
+    overflow: scroll;
+    background-color: rgb(236, 235, 235);
+    text-align: left;
+    padding:20px;
+    margin:0px;
+}
+#signup .check_box{
+    padding: 20px;
+    vertical-align: middle;
+    font-size: 20px;
+}
+#signup .check_box input + label{
+    display:inline-block;
+    width:25px;
+    height:25px;
+    border: solid 2px gray;
+    cursor:pointer;
+    vertical-align: middle;
+    margin: 5px;
+}
+#signup .check_box input:checked + label:before {
+    content:"\2713";
+    font-weight: 900;
+}
+#signup .check_box input{
+    display:none;
+}
+#signup table{
+    /* border-spacing: 1;
+    border-collapse: collapse; */
+    width: 1000px;
+    border-radius: 6px;
+    border-spacing: 15px;
+    background-color:rgb(236, 235, 235);
+    font-size:20px;
+    text-align: left;
+    padding:20px;
+}
+#signup table tr td:nth-child(1){
+    width: 120px;
+}
+#signup table .essential{
+    color: red;
+    width:50px;
+}
+#signup table label{
+    width: 100%;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+}
+#signup table .signup_input{
+    width: 95%;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    outline-color: #050a4f;
+}
+#signup table input[type=password]{
+    width: 95%;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    outline-color: #050a4f;
+}
+#signup #password_msg{
+    display: none;
+}
+#signup table .phone_input{
+    width: 20%;
+    height: 60px;
+    font-family: inherit;
+    font-size: 20px;
+    outline-color: #050a4f;
+}
+#signup table input[name=email],#signup form table #email_select, #signup table #direct_input{
+    width: 45%;
+    height: 60px;
+    font-size:20px;
+}
+#signup #direct_input{
+    display: none;
+}
+#signup input[type=submit]{
+    width: 200px;
+    height: 100px;
+    font-family: inherit;
+    color:white;
+    background-color: #050a4f;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor:pointer;
+}
+#signup table input[name=id]{
+    display: inline-block;
+    width:70%;
+}
+#signup table #post_id{
+    width:45%;
+}
+#signup table #id_button, #search_post_button{
+    display: inline-block;
+    width:24%;
+    height:60px;
+    font-size: 20px;
+    font-family: inherit;
+    cursor:pointer;
+}
+
+/*---------write.php---------*/
+#write h4{
+    font-size:30px;
+}
+#write #write_area form{
+    text-align: center;
+}
+#write #write_area form table{
+    text-align: left;
+    width:1000px;
+    border-spacing: 40px;
+    background-color:rgb(236, 235, 235);
+    font-size:20px;
+    padding:30px;
+}
+#write #write_area form table tr td:nth-child(1){
+    width: 13%;
+}
+#write #write_area form table tr td:nth-child(2){
+    width: 5%;
+}
+#write #write_area form table tr td:nth-child(3){
+    width: 75%;
+}
+#write #write_area form table tr textarea{
+    resize:none;
+    width: 100%;
+    font-family: inherit;
+    font-size:20px;
+}
+#write #text{
+    height: 200px;
+    overflow:scroll;
+}
+#write #title{
+    height:50px;
+    overflow:hidden;
+}
+#write input[type=file]{
+    font-family: inherit;
+    font-size:20px;
+}
+#write button{
+    font-family: inherit;
+    font-size:20px;
+    width:10%;
+    height:30px;
+    border:none;
+    cursor:pointer;
+}
+#write #top_fixed + label{
+    width:22px;
+    height:22px;
+    border-radius: 2px;
+    border: solid 1px darkgray;
+    display: inline-block;
+    background-color: white;
+    cursor:pointer;
+}
+#write #top_fixed:checked + label{
+    background-color: rgb(165, 165, 165);
+}
+#write #top_fixed{
+    display:none;
+}
+#write .essential{
+    color: red;
+    font-size: 20px;
+}
+#write input[type=submit]{
+    width:200px;
+    height:100px;
+    background-color: #050a4f;
+    color:white;
+    font-family: inherit;
+    font-size:25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/*---------update.php---------*/
+#q_select{
+    width:50%;
+    height:60px;
+    font-size:15px;
+}
+
+
+
+/*---------show.php---------*/
+#type h1 a{
+    color: black;
+}
+#show_box{
+    border-radius: 6px;
+    width:70%;
+    height: auto;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    background-color:rgba(220, 220, 220, 0.7);
+}
+#show_box h2{
+    text-align: left;
+    padding: 30px;
+    margin-left:15px;
+}
+#show_box #post_bar{
+    text-align: right;
+    padding: 50px;
+}
+#show_box #updt_and_dlt{
+    text-align: right;
+    padding-right: 50px;
+}
+#show_box #updt_and_dlt a{
+    color:red;
+    padding:5px;
+    cursor: pointer;
+}
+#show_box #text_area{
+    font-size:20px;
+    text-align: left;
+    padding:50px;
+    padding-left:10%;
+    padding-right:10%;
+    width:80%;
+    word-wrap:break-word;
+}
+/*화면이 1000px보다 작아지면 block으로*/
+@media (max-width:1000px){
+    #show_box #image_show{
+        display: block;
+        width:85%;
+        margin:0 auto;
+    }
+    #show_box #image_show p{
+        padding: 10px;
+
+    }
+}
+/*콘텐츠 게시판이라면, 이미지를 grid로*/
+#show_box #image_show p{
+    text-align: center;
+    margin:0 auto;
+}
+#show_box #image_show p img{
+    width: 100%;
+}
+.image_grid{
+    display: grid;
+    width:100%;
+    grid-template-columns:45% 45%;
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+.image_block{
+    display: block;
+    width:80%;
+    margin:0 auto;
+}
+#show_box #attch_show{
+    width:76%;
+    margin-top:100px;
+    margin-bottom:100px;
+    text-align: left;
+    display: inline-block;
+    background-color: white;
+    border-radius: 6px;
+    padding:2%;
+}
+#show_box #attch_show p{
+    display: block;
+}
+#show_box #attch_show p a{
+    color:blue;
+    text-decoration: underline;
+}
+#show_box #attch_show p a:hover{
+    color:black;
+}
+
+
+
+/*---------community.php---------*/
+#community{
+    display:grid;
+    justify-items:center;
+}
+#community #post_table{
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+}
+#community #post_table thead th{
+    padding:10px;
+    border-bottom: solid 3px #050a4f;
+    font-size:20px;
+}
+#community #post_table tbody td{
+    padding:10px;
+    padding-left:20px;
+    border-bottom: solid 1px #050a4f;
+
+}
+#community #post_table tbody tr td:nth-child(2){
+    text-align: left;
+
+}
+#community #post_table tr a{
+    width:100%;
+    color:black;
+    text-align: left;
+}
+#write_bt{
+    width:70%;
+    text-align: right;
+    justify-items:right;
+}
+#write_bt button{
+    font-family: inherit;
+    width:70px;
+    height:35px;
+    background-color: #050a4f;
+    color:white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#page_bt{
+    padding-top:50px;
+}
+#page_bt a{
+    color: black;
+    font-size: 20px;
+    padding:5px;
+}
+
+
+
+/*---------contents.php---------*/
+#contents{
+    width:100%;
+}
+#contents_title h1{
+    margin:auto;
+}
+#contents_title h1 a{
+    color:black;
+}
+#contents_list{
+    display:grid;
+    column-gap:15px;
+    row-gap: 15px;
+    grid-template-rows: repeat(auto-fit, 400px); /*400px짜리의 박스를 컨테이너의 크기에 맞게 자동적으로 개수 채움*/
+    grid-template-columns: repeat(auto-fit, 400px);
+    width:90%;/*전체 페이지 width의 90프로*/
+    list-style: none;
+    padding:0px;
+    margin: 0 auto;/*이 컨네이너를 전체에서 가운데 정렬*/
+    justify-items: center;
+    justify-content: center;/*컨네이너 안의 박스들을 가운데 정렬*/
+}
+#contents_list li{
+    position:relative;
+    width:100%;
+    height:100%;
+
+}
+#contents_list li a{
+    width:100%;
+    height:100%;
+}
+#contents_list img{
+    width:100%;
+    height:100%;    
+}
+.shadow_box{
+    visibility: visible;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;  
+    margin: 0px;
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.22) 68%,rgba(0,0,0,0.44) 76%,rgba(0,0,0,0.78) 100%); 
+    z-index: 1;
+}
+.front_box{
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.front_box:hover{
+    opacity:0%;
+}
+.con_title{
+    position:absolute;
+    top:285px;
+    left:20px;
+    font-size: 26px;
+    color:rgba(255, 255, 255, 0.964);
+    z-index:1;
+    max-width: 260px;
+    overflow: pre-line;
+    text-align: left;
+}
+.con_author{
+    position:absolute;
+    top:300px;
+    right:40px;
+    max-width: 60px;
+    font-size: 15px;
+    color:rgba(194, 194, 194, 0.921);
+    z-index:1;
+}
+.view_icon{
+    content: "\1F440";
+    position:absolute;
+    top:335px;
+    right:20px;
+    font-size: 20px;
+    color:rgb(194, 194, 194);
+    z-index:1;
+}
+.con_view{
+    content: "\1F440";
+    position:absolute;
+    top:335px;
+    right:20px;
+    font-size: 20px;
+    color:rgb(194, 194, 194);
+    z-index:1;
+}
+
+
+
+/*---------mypage.php---------*/
+#mypage{
+    width: 100%;
+}
+#flex_box{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+}
+#mypage_nav{
+    float:left;
+    width:300px;
+    height: 700px;
+    background-color: rgb(219, 218, 218);
+    border-radius: 6px;
+    margin-right:50px;
+}
+#mypage_main{
+    flex-grow:1;
+    float:right;
+    height: auto;
+    background-color: rgb(219, 218, 218);
+    border-radius: 6px;
+    padding-top:50px;
+    padding-bottom:50px;
+    padding-left:40px;
+    padding-right:40px;
+    text-align: left;
+}
+#mypage_nav ul{
+    padding:0;
+    padding-top:50px;
+    padding-bottom:50px;
+}
+#mypage_nav li{
+    width:100%;
+    height:100px;
+    list-style: none;
+    text-align: left;
+    padding-left:60px;
+}
+#mypage_nav li a{
+    font-family: 'Noto Sans KR';
+    font-size:25px;
+    font-weight: 800;
+    color:rgb(67, 66, 66);
+    transition: all 0.2s;
+}
+#mypage_nav li a:hover{
+    color:rgb(16, 20, 135);
+}
+#mypage_main h2{
+    font-size:20px;
+    font-weight: 600;
+    color:rgb(36, 35, 35);
+}
+.pg_dt_box{
+    width:1000px;
+    height:400px;
+    border:solid 1px rgb(129, 129, 129);
+    border-radius: 6px;
+    padding:20px;
+    background-color: rgb(237, 236, 236);
+}
+#privacy_update_form table td{
+    width:25%;
+    height: 50px;
+    padding:0;
+    font-size:20px;
+    font-weight:400;
+}
+#privacy_update_form td p{
+    display: inline-block;
+}
+#privacy_update_form table input{
+    width:90%;
+    height: 45px;
+    font-size:16px;
+    font-family: inherit;
+}
+#privacy_update_form .phone_input{
+    width:22%;
+    height: 45px;
+    font-size:16px;
+    font-family: inherit;
+}
+#privacy_update_form #post_id{
+    width:50%;
+}
+#privacy_update_form #search_post_button{
+    width:38%;
+    height: 45px;
+    font-size:13px;
+    vertical-align: middle;
+}
+#privacy_update_form #email_back{
+    margin-left:10px;
+    width:75%;
+}
+.bolder{
+    font-weight: bolder;
+}
+#privacy_update_form #updt_strt_bt{
+    display: inline-block;
+    width:50px;
+    height: 30px;
+    font-family: inherit;
+    cursor: pointer;
+}
+#privacy_update_form #submit_bt{
+    display: inline-block;
+    width:50px;
+    height: 30px;
+    font-family: inherit;
+    cursor: pointer;
+}
+#pwd_update_form{
+    width:100%;
+    text-align: center;
+}
+#pwd_explain{
+    width: 80%;
+    height: 150px;
+    background-color: rgb(191, 191, 191);
+    border:solid 1px black;
+    margin:auto;
+    font-size:20px;
+    margin-bottom:15px;
+    margin-top:15px;
+}
+#pwd_explain p{
+    position: relative;
+    top: 10%;
+    padding:20px;
+    
+}
+#pwd_update_form table{
+    width:80%;
+    margin:auto;
+}
+#pwd_update_form tr{
+    height: 30%;
+}
+#pwd_update_form table tr td:nth-child(1){
+    width:30%;
+}
+#pwd_update_form table tr td:nth-child(2){
+    width:55%;
+}
+#pwd_update_form table tr td:nth-child(3){
+    width:30%;
+    text-align: right;
+}
+#pwd_update_form table p{
+    font-size:20px;
+    font-weight: bolder;
+}
+#pwd_update_form input[type=password]{
+    width:100%;
+    height: 40px;
+    font-family: inherit;
+    font-size: 18px;
+    background-color: rgb(255, 209, 164);
+    border:solid 1px rgb(254, 87, 87);
+}
+#pwd_update_form input[type=submit]{
+    width:50px;
+    height: 30px;
+    font-family: inherit;
+}
+#widrl_explain{
+    width: 80%;
+    height: 150px;
+    background-color: rgb(191, 191, 191);
+    border:solid 1px black;
+    margin:auto;
+    font-size:20px;
+    margin-bottom:15px;
+    margin-top:15px;
+}
+#widrl_explain p{
+    text-align: center;
+    position: relative;
+    top: 10%;
+    padding:20px;
+    
+}
+#widrl_form{
+    text-align: center;
+}
+#widrl_form .check_box{
+    padding: 20px;
+    vertical-align: middle;
+    font-size: 20px;
+}
+#widrl_form .check_box input + label{
+    display:inline-block;
+    width:25px;
+    height:25px;
+    border: solid 2px gray;
+    cursor:pointer;
+    vertical-align: middle;
+    margin: 5px;
+}
+#widrl_form .check_box input:checked + label:before {
+    content:"\2713";
+    font-weight: 900;
+}
+#widrl_form .check_box input{
+    display:none;
+}
+#widrl_pwd_box{
+    width:80%;
+    margin:auto;
+}
+#widrl_pwd_box p{
+    display: inline;
+    width:35%;
+    font-size:20px;
+    font-weight: bolder;
+    margin-right:20px;
+} 
+#widrl_pwd_box input{
+    display: inline;
+    font-family: inherit;
+    font-size: 18px;
+    width:55%;
+    height: 40px;
+    background-color: rgb(255, 209, 164);
+    border:solid 1px rgb(254, 87, 87);
+}
+#widrl_form input[type=submit]{
+    margin:30px;
+    width:80%;
+    height: 60px;
+    font-family: inherit;
+    font-size:20px;
+}
+#mypost_show table tbody tr td a{
+    color: black;
+}
+#mypost_show .pg_dt_box{
+    height: auto;
+}
+#mypost_show #post_table thead th{
+    padding:10px;
+    border-bottom: solid 3px #050a4f;
+    font-size:20px;
+}
+#mypost_show #post_table tbody td{
+    padding:10px;
+    border-bottom: solid 1px #050a4f;
+}
+#td_title{
+    font-weight: 800;
+}
+
+
+/*---------footer---------*/
+#footer{
+    padding-left:20px;
+    margin-top:50px;
+    margin-bottom:50px;
+    color:rgb(183, 180, 180, 0.7);
+    font-weight:lighter;
+}
+#copyright{
+    color:rgba(255, 255, 0, 0.686);
+    font-weight: lighter;
+}
+
+
+/*---------top_button---------*/
+#top_button{
+    position:fixed;
+    right:2%;
+    bottom:50px;
+    display:none;
+}
+#top_button img{
+    cursor:pointer;
+    width:100px;
+    height:100px;
+}

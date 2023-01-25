@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /template/
+Sitemap: http://www.seumlab.com/sitemap.xml
