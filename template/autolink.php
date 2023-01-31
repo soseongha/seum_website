@@ -47,4 +47,3 @@ function autolink_callback($matches) {
     return '<a href="'.$url.'" title="'.$urlHtm.'" onclick="window.open(this.href); return false;">'.$urlHtm.'</a>';
     }
     ?>
-    출처: https://mysource.tistory.com/entry/본문의-url-부분만-자동으로-링크-걸어주는-소스 [Storage:티스토리]
